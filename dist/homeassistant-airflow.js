@@ -45,7 +45,7 @@ const Rt = (o) => new Ct(typeof o == "string" ? o : o + "", void 0, tt), Pt = (o
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const { is: zt, defineProperty: jt, getOwnPropertyDescriptor: It, getOwnPropertyNames: Gt, getOwnPropertySymbols: Vt, getPrototypeOf: Wt } = Object, v = globalThis, yt = v.trustedTypes, qt = yt ? yt.emptyScript : "", K = v.reactiveElementPolyfillSupport, N = (o, t) => o, I = { toAttribute(o, t) {
+const { is: zt, defineProperty: jt, getOwnPropertyDescriptor: It, getOwnPropertyNames: Gt, getOwnPropertySymbols: Vt, getPrototypeOf: Wt } = Object, b = globalThis, yt = b.trustedTypes, qt = yt ? yt.emptyScript : "", K = b.reactiveElementPolyfillSupport, N = (o, t) => o, I = { toAttribute(o, t) {
   switch (t) {
     case Boolean:
       o = o ? qt : null;
@@ -74,7 +74,7 @@ const { is: zt, defineProperty: jt, getOwnPropertyDescriptor: It, getOwnProperty
   }
   return e;
 } }, et = (o, t) => !zt(o, t), _t = { attribute: !0, type: String, converter: I, reflect: !1, useDefault: !1, hasChanged: et };
-Symbol.metadata ?? (Symbol.metadata = Symbol("metadata")), v.litPropertyMetadata ?? (v.litPropertyMetadata = /* @__PURE__ */ new WeakMap());
+Symbol.metadata ?? (Symbol.metadata = Symbol("metadata")), b.litPropertyMetadata ?? (b.litPropertyMetadata = /* @__PURE__ */ new WeakMap());
 let k = class extends HTMLElement {
   static addInitializer(t) {
     this._$Ei(), (this.l ?? (this.l = [])).push(t);
@@ -278,15 +278,15 @@ let k = class extends HTMLElement {
   firstUpdated(t) {
   }
 };
-k.elementStyles = [], k.shadowRootOptions = { mode: "open" }, k[N("elementProperties")] = /* @__PURE__ */ new Map(), k[N("finalized")] = /* @__PURE__ */ new Map(), K == null || K({ ReactiveElement: k }), (v.reactiveElementVersions ?? (v.reactiveElementVersions = [])).push("2.1.2");
+k.elementStyles = [], k.shadowRootOptions = { mode: "open" }, k[N("elementProperties")] = /* @__PURE__ */ new Map(), k[N("finalized")] = /* @__PURE__ */ new Map(), K == null || K({ ReactiveElement: k }), (b.reactiveElementVersions ?? (b.reactiveElementVersions = [])).push("2.1.2");
 /**
  * @license
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const L = globalThis, mt = (o) => o, G = L.trustedTypes, gt = G ? G.createPolicy("lit-html", { createHTML: (o) => o }) : void 0, kt = "$lit$", g = `lit$${Math.random().toFixed(9).slice(2)}$`, Mt = "?" + g, Zt = `<${Mt}>`, C = document, B = () => C.createComment(""), H = (o) => o === null || typeof o != "object" && typeof o != "function", st = Array.isArray, Kt = (o) => st(o) || typeof (o == null ? void 0 : o[Symbol.iterator]) == "function", J = `[ 	
-\f\r]`, T = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, vt = /-->/g, xt = />/g, w = RegExp(`>|${J}(?:([^\\s"'>=/]+)(${J}*=${J}*(?:[^ 	
-\f\r"'\`<>=]|("|')|))|$)`, "g"), bt = /'/g, At = /"/g, Ot = /^(?:script|style|textarea|title)$/i, Ft = (o) => (t, ...e) => ({ _$litType$: o, strings: t, values: e }), U = Ft(1), y = Ft(2), O = Symbol.for("lit-noChange"), p = Symbol.for("lit-nothing"), wt = /* @__PURE__ */ new WeakMap(), E = C.createTreeWalker(C, 129);
+const L = globalThis, mt = (o) => o, G = L.trustedTypes, gt = G ? G.createPolicy("lit-html", { createHTML: (o) => o }) : void 0, kt = "$lit$", x = `lit$${Math.random().toFixed(9).slice(2)}$`, Mt = "?" + x, Zt = `<${Mt}>`, P = document, B = () => P.createComment(""), H = (o) => o === null || typeof o != "object" && typeof o != "function", st = Array.isArray, Kt = (o) => st(o) || typeof (o == null ? void 0 : o[Symbol.iterator]) == "function", J = `[ 	
+\f\r]`, T = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, vt = /-->/g, xt = />/g, E = RegExp(`>|${J}(?:([^\\s"'>=/]+)(${J}*=${J}*(?:[^ 	
+\f\r"'\`<>=]|("|')|))|$)`, "g"), bt = /'/g, At = /"/g, Ot = /^(?:script|style|textarea|title)$/i, Ft = (o) => (t, ...e) => ({ _$litType$: o, strings: t, values: e }), U = Ft(1), _ = Ft(2), O = Symbol.for("lit-noChange"), p = Symbol.for("lit-nothing"), wt = /* @__PURE__ */ new WeakMap(), S = P.createTreeWalker(P, 129);
 function Tt(o, t) {
   if (!st(o) || !o.hasOwnProperty("raw")) throw Error("invalid template strings array");
   return gt !== void 0 ? gt.createHTML(t) : t;
@@ -297,9 +297,9 @@ const Jt = (o, t) => {
   for (let c = 0; c < e; c++) {
     const a = o[c];
     let d, l, h = -1, u = 0;
-    for (; u < a.length && (r.lastIndex = u, l = r.exec(a), l !== null); ) u = r.lastIndex, r === T ? l[1] === "!--" ? r = vt : l[1] !== void 0 ? r = xt : l[2] !== void 0 ? (Ot.test(l[2]) && (i = RegExp("</" + l[2], "g")), r = w) : l[3] !== void 0 && (r = w) : r === w ? l[0] === ">" ? (r = i ?? T, h = -1) : l[1] === void 0 ? h = -2 : (h = r.lastIndex - l[2].length, d = l[1], r = l[3] === void 0 ? w : l[3] === '"' ? At : bt) : r === At || r === bt ? r = w : r === vt || r === xt ? r = T : (r = w, i = void 0);
-    const f = r === w && o[c + 1].startsWith("/>") ? " " : "";
-    n += r === T ? a + Zt : h >= 0 ? (s.push(d), a.slice(0, h) + kt + a.slice(h) + g + f) : a + g + (h === -2 ? c : f);
+    for (; u < a.length && (r.lastIndex = u, l = r.exec(a), l !== null); ) u = r.lastIndex, r === T ? l[1] === "!--" ? r = vt : l[1] !== void 0 ? r = xt : l[2] !== void 0 ? (Ot.test(l[2]) && (i = RegExp("</" + l[2], "g")), r = E) : l[3] !== void 0 && (r = E) : r === E ? l[0] === ">" ? (r = i ?? T, h = -1) : l[1] === void 0 ? h = -2 : (h = r.lastIndex - l[2].length, d = l[1], r = l[3] === void 0 ? E : l[3] === '"' ? At : bt) : r === At || r === bt ? r = E : r === vt || r === xt ? r = T : (r = E, i = void 0);
+    const f = r === E && o[c + 1].startsWith("/>") ? " " : "";
+    n += r === T ? a + Zt : h >= 0 ? (s.push(d), a.slice(0, h) + kt + a.slice(h) + x + f) : a + x + (h === -2 ? c : f);
   }
   return [Tt(o, n + (o[e] || "<?>") + (t === 2 ? "</svg>" : t === 3 ? "</math>" : "")), s];
 };
@@ -309,34 +309,34 @@ class R {
     this.parts = [];
     let n = 0, r = 0;
     const c = t.length - 1, a = this.parts, [d, l] = Jt(t, e);
-    if (this.el = R.createElement(d, s), E.currentNode = this.el.content, e === 2 || e === 3) {
+    if (this.el = R.createElement(d, s), S.currentNode = this.el.content, e === 2 || e === 3) {
       const h = this.el.content.firstChild;
       h.replaceWith(...h.childNodes);
     }
-    for (; (i = E.nextNode()) !== null && a.length < c; ) {
+    for (; (i = S.nextNode()) !== null && a.length < c; ) {
       if (i.nodeType === 1) {
         if (i.hasAttributes()) for (const h of i.getAttributeNames()) if (h.endsWith(kt)) {
-          const u = l[r++], f = i.getAttribute(h).split(g), $ = /([.?@])?(.*)/.exec(u);
+          const u = l[r++], f = i.getAttribute(h).split(x), $ = /([.?@])?(.*)/.exec(u);
           a.push({ type: 1, index: n, name: $[2], strings: f, ctor: $[1] === "." ? Qt : $[1] === "?" ? Xt : $[1] === "@" ? te : q }), i.removeAttribute(h);
-        } else h.startsWith(g) && (a.push({ type: 6, index: n }), i.removeAttribute(h));
+        } else h.startsWith(x) && (a.push({ type: 6, index: n }), i.removeAttribute(h));
         if (Ot.test(i.tagName)) {
-          const h = i.textContent.split(g), u = h.length - 1;
+          const h = i.textContent.split(x), u = h.length - 1;
           if (u > 0) {
             i.textContent = G ? G.emptyScript : "";
-            for (let f = 0; f < u; f++) i.append(h[f], B()), E.nextNode(), a.push({ type: 2, index: ++n });
+            for (let f = 0; f < u; f++) i.append(h[f], B()), S.nextNode(), a.push({ type: 2, index: ++n });
             i.append(h[u], B());
           }
         }
       } else if (i.nodeType === 8) if (i.data === Mt) a.push({ type: 2, index: n });
       else {
         let h = -1;
-        for (; (h = i.data.indexOf(g, h + 1)) !== -1; ) a.push({ type: 7, index: n }), h += g.length - 1;
+        for (; (h = i.data.indexOf(x, h + 1)) !== -1; ) a.push({ type: 7, index: n }), h += x.length - 1;
       }
       n++;
     }
   }
   static createElement(t, e) {
-    const s = C.createElement("template");
+    const s = P.createElement("template");
     return s.innerHTML = t, s;
   }
 }
@@ -358,17 +358,17 @@ class Yt {
     return this._$AM._$AU;
   }
   u(t) {
-    const { el: { content: e }, parts: s } = this._$AD, i = ((t == null ? void 0 : t.creationScope) ?? C).importNode(e, !0);
-    E.currentNode = i;
-    let n = E.nextNode(), r = 0, c = 0, a = s[0];
+    const { el: { content: e }, parts: s } = this._$AD, i = ((t == null ? void 0 : t.creationScope) ?? P).importNode(e, !0);
+    S.currentNode = i;
+    let n = S.nextNode(), r = 0, c = 0, a = s[0];
     for (; a !== void 0; ) {
       if (r === a.index) {
         let d;
         a.type === 2 ? d = new D(n, n.nextSibling, this, t) : a.type === 1 ? d = new a.ctor(n, a.name, a.strings, this, t) : a.type === 6 && (d = new ee(n, this, t)), this._$AV.push(d), a = s[++c];
       }
-      r !== (a == null ? void 0 : a.index) && (n = E.nextNode(), r++);
+      r !== (a == null ? void 0 : a.index) && (n = S.nextNode(), r++);
     }
-    return E.currentNode = C, i;
+    return S.currentNode = P, i;
   }
   p(t) {
     let e = 0;
@@ -404,7 +404,7 @@ class D {
     this._$AH !== t && (this._$AR(), this._$AH = this.O(t));
   }
   _(t) {
-    this._$AH !== p && H(this._$AH) ? this._$AA.nextSibling.data = t : this.T(C.createTextNode(t)), this._$AH = t;
+    this._$AH !== p && H(this._$AH) ? this._$AA.nextSibling.data = t : this.T(P.createTextNode(t)), this._$AH = t;
   }
   $(t) {
     var n;
@@ -520,7 +520,7 @@ const se = (o, t, e) => {
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const S = globalThis;
+const C = globalThis;
 class M extends k {
   constructor() {
     super(...arguments), this.renderOptions = { host: this }, this._$Do = void 0;
@@ -547,10 +547,10 @@ class M extends k {
   }
 }
 var St;
-M._$litElement$ = !0, M.finalized = !0, (St = S.litElementHydrateSupport) == null || St.call(S, { LitElement: M });
-const Q = S.litElementPolyfillSupport;
+M._$litElement$ = !0, M.finalized = !0, (St = C.litElementHydrateSupport) == null || St.call(C, { LitElement: M });
+const Q = C.litElementPolyfillSupport;
 Q == null || Q({ LitElement: M });
-(S.litElementVersions ?? (S.litElementVersions = [])).push("4.2.2");
+(C.litElementVersions ?? (C.litElementVersions = [])).push("4.2.2");
 /**
  * @license
  * Copyright 2017 Google LLC
@@ -608,6 +608,7 @@ const Et = {
     outdoor: "Outdoor",
     extract: "Extract",
     exhaust: "Exhaust",
+    humidity: "Humidity",
     supply: "Supply",
     calculated_efficiency: "Calculated Efficiency",
     bypass_active: "BYPASS ACTIVE"
@@ -816,8 +817,8 @@ let W = class extends M {
     const i = this.config.color_supply || "#4CAF50", n = this.config.color_extract || "#FFB300", r = this.config.color_exhaust || "#F44336", c = this.config.color_outdoor || "#2196F3", a = this.config.entity_bypass, d = a ? (ut = this.hass.states[a]) == null ? void 0 : ut.state : "off", l = d === "on" || d === "open" || d === "active", h = this.config.entity_level, u = h ? parseFloat(((pt = this.hass.states[h]) == null ? void 0 : pt.state) ?? "1") : 1, f = isNaN(u) ? 1 : u, $ = this.config.level_min ?? 0, at = (this.config.level_max ?? 4) - $, ct = at > 0 ? Math.max(0, Math.min(1, (f - $) / at)) : 0.5, Z = f > 0 ? (3 - ct * 2.6).toFixed(2) : "0", lt = f > 0 ? (2 - ct * 1.8).toFixed(2) : "0";
     let z = this.config.language;
     (!z || z === "auto") && (z = this.hass.language === "de" ? "de" : "en");
-    const P = Et[z] || Et.en, ht = this.config.card_background_mode || "auto", m = ht === "light", x = ht === "auto", _ = x ? "var(--ha-card-background, var(--card-background-color, var(--paper-card-background-color, white)))" : m ? "white" : "#1c1c1c", b = x ? "var(--primary-text-color, var(--primary-text-color, #333))" : m ? "#333" : "#e1e1e1", Ut = x ? "var(--secondary-text-color, var(--secondary-text-color, #444))" : m ? "#444" : "#b0b0b0", A = x ? "var(--divider-color, var(--divider-color, #ccc))" : m ? "#ccc" : "#444", Bt = x ? "var(--divider-color, var(--primary-text-color, #333))" : m ? "#333" : "#444", Ht = x ? "var(--primary-background-color, var(--primary-background-color, #fdfdfd))" : m ? "#fdfdfd" : "#2c2c2c", dt = x ? "var(--secondary-background-color, var(--secondary-background-color, #f0f0f0))" : m ? "#f0f0f0" : "#333";
-    return y`
+    const A = Et[z] || Et.en, ht = this.config.card_background_mode || "auto", m = ht === "light", w = ht === "auto", y = w ? "var(--ha-card-background, var(--card-background-color, var(--paper-card-background-color, white)))" : m ? "white" : "#1c1c1c", g = w ? "var(--primary-text-color, var(--primary-text-color, #333))" : m ? "#333" : "#e1e1e1", Ut = w ? "var(--secondary-text-color, var(--secondary-text-color, #444))" : m ? "#444" : "#b0b0b0", v = w ? "var(--divider-color, var(--divider-color, #ccc))" : m ? "#ccc" : "#444", Bt = w ? "var(--divider-color, var(--primary-text-color, #333))" : m ? "#333" : "#444", Ht = w ? "var(--primary-background-color, var(--primary-background-color, #fdfdfd))" : m ? "#fdfdfd" : "#2c2c2c", dt = w ? "var(--secondary-background-color, var(--secondary-background-color, #f0f0f0))" : m ? "#f0f0f0" : "#333";
+    return _`
        <svg viewBox="40 35 520 380" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" 
             style="--fan-speed: ${Z}s; --flow-speed: ${lt}s; --flow-display: ${lt === "0" ? "none" : "block"};">
          <defs>
@@ -844,10 +845,10 @@ let W = class extends M {
          </defs>
 
          <!-- Main Unit Box (Now large enough to contain everything) -->
-         <rect x="${50}" y="${45}" width="500" height="360" rx="15" fill="${_}" stroke="${Bt}" stroke-width="2" filter="url(#dropShadow)" />
+         <rect x="${50}" y="${45}" width="500" height="360" rx="15" fill="${y}" stroke="${Bt}" stroke-width="2" filter="url(#dropShadow)" />
          
          <!-- Heat Exchanger (Diamond shape in middle) -->
-         <rect x="${300 - 56.5}" y="${225 - 56.5}" width="113" height="113" transform="rotate(45 ${300} ${225})" fill="${Ht}" stroke="${A}" stroke-width="1" />
+         <rect x="${300 - 56.5}" y="${225 - 56.5}" width="113" height="113" transform="rotate(45 ${300} ${225})" fill="${Ht}" stroke="${v}" stroke-width="1" />
          
          <!-- Background Ducts (Static) -->
          <!-- Path 1: Outdoor -> Supply -->
@@ -874,18 +875,19 @@ let W = class extends M {
 
          <!-- Port Boxes (Label + Temperature) -->
          <!-- Top Boxes: Positioned inside the frame, above duct lines -->
-         ${this.renderPortBox(70, 65, P.outdoor, this.config.entity_temp_outdoor, c, _, A, b)}
-         ${this.renderEfficiency(255, 65, P.efficiency, _, A, Ut, b)}
-         ${this.renderPortBox(440, 65, P.extract, this.config.entity_temp_extract, n, _, A, b)}
+         ${this.renderPortBox(70, 65, A.outdoor, this.config.entity_temp_outdoor, c, y, v, g)}
+         ${this.renderEfficiency(255, 65, A.efficiency, y, v, Ut, g)}
+         ${this.renderPortBox(440, 65, A.extract, this.config.entity_temp_extract, n, y, v, g)}
+         ${this.renderPortBox(440, -15, A.humidity, this.config.entity_humidity, n, y, v, g)}
          
          <!-- Bottom Boxes: Positioned inside the frame, below duct lines -->
-         ${this.renderPortBox(70, 330, P.exhaust, this.config.entity_temp_exhaust, r, _, A, b)}
-         ${this.renderPortBox(255, 330, P.level, this.config.entity_level, m ? "#444" : b, _, A, b)}
-         ${this.renderPortBox(440, 330, P.supply, this.config.entity_temp_supply, l ? c : i, _, A, b)}
+         ${this.renderPortBox(70, 330, A.exhaust, this.config.entity_temp_exhaust, r, y, v, g)}
+         ${this.renderPortBox(255, 330, A.level, this.config.entity_level, m ? "#444" : g, y, v, g)}
+         ${this.renderPortBox(440, 330, A.supply, this.config.entity_temp_supply, l ? c : i, y, v, g)}
 
          <!-- Fans -->
-         ${this.renderFan(450, 285, this.config.entity_fan_supply, l ? c : i, Z, _)}
-         ${this.renderFan(150, 285, this.config.entity_fan_extract, r, Z, _)}
+         ${this.renderFan(450, 285, this.config.entity_fan_supply, l ? c : i, Z, y)}
+         ${this.renderFan(150, 285, this.config.entity_fan_extract, r, Z, y)}
          
          <!-- Bypass (If Active) -->
          ${this.renderBypass(300, 225)}
@@ -898,7 +900,7 @@ let W = class extends M {
   renderPortBox(o, t, e, s, i, n, r, c) {
     var u;
     const a = s ? parseFloat(this.hass.states[s].state).toFixed(1) : "-", d = s ? ((u = this.hass.states[s]) == null ? void 0 : u.attributes.unit_of_measurement) ?? "" : "", l = 90;
-    return y`
+    return _`
             <g transform="translate(${o}, ${t})">
                 <rect x="0" y="0" width="${l}" height="${55}" rx="10" fill="${n}" stroke="${r}" stroke-width="1" />
                 <text x="${l / 2}" y="20" font-size="12" font-weight="bold" text-anchor="middle" fill="${i}">${e}</text>
@@ -908,9 +910,9 @@ let W = class extends M {
   }
   renderBypass(o, t) {
     const e = this.config.entity_bypass;
-    if (!e) return y``;
+    if (!e) return _``;
     const s = this.hass.states[e], i = s == null ? void 0 : s.state;
-    return i === "on" || i === "open" || i === "active" ? y`` : y``;
+    return i === "on" || i === "open" || i === "active" ? _`` : _``;
   }
   renderEfficiency(o, t, e, s, i, n, r) {
     var l;
@@ -927,9 +929,9 @@ let W = class extends M {
     } else if (this.config.entity_efficiency)
       c = ((l = this.hass.states[this.config.entity_efficiency]) == null ? void 0 : l.state) ?? "-";
     else
-      return y``;
+      return _``;
     const a = 90;
-    return y`
+    return _`
             <g transform="translate(${o}, ${t})">
                 <rect x="0" y="0" width="${a}" height="${55}" rx="10" fill="${s}" stroke="${i}" stroke-width="1" />
                 <text x="${a / 2}" y="20" font-size="12" font-weight="bold" text-anchor="middle" fill="${n}">${e}</text>
@@ -949,15 +951,15 @@ let W = class extends M {
     const r = e ? this.hass.states[e] : void 0, c = (r == null ? void 0 : r.state) ?? "0";
     r == null || r.attributes.unit_of_measurement;
     const a = parseFloat(c), d = c === "on" || !isNaN(a) && a > 0 || i !== "0", l = !isNaN(a) && a > 0;
-    return y`
+    return _`
             <g transform="translate(${o}, ${t})">
                 <!-- Speed Display above fan (Hidden if 0) -->
-                ${l ? y`
+                ${l ? _`
                     <text x="0" y="-25" font-size="10" text-anchor="middle" fill="${s}" font-weight="bold">${c} %</text>
                 ` : ""}
                 
                 <g>
-                    ${d && i !== "0" ? y`
+                    ${d && i !== "0" ? _`
                         <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="${i}s" repeatCount="indefinite"/>
                     ` : ""}
                     <circle cx="0" cy="0" r="20" fill="${n}" stroke="${s}" stroke-width="2"/>

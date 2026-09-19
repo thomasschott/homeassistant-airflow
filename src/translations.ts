@@ -5,6 +5,7 @@ export const translations = {
         outdoor: "Outdoor",
         extract: "Extract",
         exhaust: "Exhaust",
+        humidity: "Humidity",
         supply: "Supply",
         calculated_efficiency: "Calculated Efficiency",
         bypass_active: "BYPASS ACTIVE"
