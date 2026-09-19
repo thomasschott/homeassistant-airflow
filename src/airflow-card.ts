@@ -199,9 +199,9 @@ export class AirflowCard extends LitElement {
          
          <!-- Bottom Boxes: Positioned inside the frame, below duct lines -->
          ${this.renderPortBox(cx - 230, cy + 105, t.exhaust, this.config.entity_temp_exhaust, colorExhaust, cardBg, divider, primaryText)}
-         ${this.renderPortBox(cx - 45, cy + 105, t.level, this.config.entity_level, isLight ? "#444" : primaryText, cardBg, divider, primaryText)}
+         ${this.renderPortBox(cx - 45, cy + 105, t.level, this.config.entity_level, isLight ? "#444" : primaryText, cardBg, divider, primaryText, true)}
          ${this.renderPortBox(cx + 140, cy + 105, t.supply, this.config.entity_temp_supply, isBypassOpen ? colorOutdoor : colorFresh, cardBg, divider, primaryText)}
-         ${this.renderPortBox(cx + 47, cy + 105, t.target_temp, this.config.entity_temp_target, isBypassOpen ? colorOutdoor : colorFresh, cardBg, divider, primaryText)}
+         ${this.renderPortBox(cx + 47, cy + 105, t.target_temp, this.config.entity_temp_target, isBypassOpen ? colorOutdoor : colorFresh, cardBg, divider, primaryText, true)}
 
          <!-- Fans -->
          ${this.renderFan(cx + 150, cy + 60, this.config.entity_fan_supply, isBypassOpen ? colorOutdoor : colorFresh, fanDuration, cardBg)}
@@ -216,19 +216,43 @@ export class AirflowCard extends LitElement {
      `;
     }
 
-    private renderPortBox(x: number, y: number, label: string, entityId: string | undefined, color: string, cardBg: string, divider: string, textColor: string): SVGTemplateResult {
-        const state = entityId ? (parseFloat(this.hass.states[entityId].state).toFixed(1) ) : '-';
-        const unit = entityId ? (this.hass.states[entityId]?.attributes.unit_of_measurement ?? '') : '';
+    private renderPortBox(x: number, y: number, label: string, entityId: string | undefined, color: string, cardBg: string, divider: string, textColor: string, moreInfo = false): SVGTemplateResult {
+        const stateObj = entityId ? this.hass.states[entityId] : undefined;
+        const raw = stateObj?.state;
+        const parsed = raw !== undefined ? parseFloat(raw) : NaN;
+        const state = isNaN(parsed) ? (raw ?? '-') : parsed.toFixed(1);
+        const unit = stateObj?.attributes.unit_of_measurement ?? '';
         const width = 90;
         const height = 55;
+
+        const clickable = moreInfo && !!stateObj;
 
         return svg`
             <g transform="translate(${x}, ${y})">
                 <rect x="0" y="0" width="${width}" height="${height}" rx="10" fill="${cardBg}" stroke="${divider}" stroke-width="1" />
                 <text x="${width / 2}" y="20" font-size="12" font-weight="bold" text-anchor="middle" fill="${color}">${label}</text>
-                <text x="${width / 2}" y="42" font-size="14" text-anchor="middle" fill="${textColor}">${state}${unit}</text>
+                <text
+                    class="${clickable ? 'value clickable' : 'value'}"
+                    x="${width / 2}" y="42" font-size="14" text-anchor="middle" fill="${textColor}"
+                    role="${clickable ? 'button' : undefined}"
+                    tabindex="${clickable ? '0' : undefined}"
+                    @click=${clickable ? (e: Event) => this._handleMoreInfo(e, entityId!) : undefined}
+                    @keydown=${clickable ? (e: KeyboardEvent) => {
+                        if (e.key === 'Enter' || e.key === ' ') this._handleMoreInfo(e, entityId!);
+                    } : undefined}
+                >${state}${unit}</text>
             </g>
         `;
+    }
+
+    private _handleMoreInfo(e: Event, entityId: string): void {
+        e.stopPropagation();
+        e.preventDefault();
+        this.dispatchEvent(new CustomEvent('hass-more-info', {
+            detail: { entityId },
+            bubbles: true,
+            composed: true,
+        }));
     }
 
     private renderBypass(cx: number, cy: number): SVGTemplateResult {
@@ -332,6 +356,17 @@ export class AirflowCard extends LitElement {
       }
       .drawing-container {
         width: 100%;
+      }
+      text.clickable {
+        cursor: pointer;
+        text-decoration: underline;
+        text-decoration-style: dotted;
+        text-underline-offset: 2px;
+      }
+      text.clickable:hover,
+      text.clickable:focus-visible {
+        opacity: 0.7;
+        outline: none;
       }
       .flow-line {
           stroke-dasharray: 10, 15;
