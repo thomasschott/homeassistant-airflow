@@ -211,7 +211,7 @@ export class AirflowCard extends LitElement {
     }
 
     private renderPortBox(x: number, y: number, label: string, entityId: string | undefined, color: string, cardBg: string, divider: string, textColor: string): SVGTemplateResult {
-        const state = entityId ? (this.hass.states[entityId]?.state ?? 'N/A') : '-';
+        const state = entityId ? (parseFloat(this.hass.states[entityId].state).toFixed(1) ) : '-';
         const unit = entityId ? (this.hass.states[entityId]?.attributes.unit_of_measurement ?? '') : '';
         const width = 90;
         const height = 55;
@@ -274,7 +274,7 @@ export class AirflowCard extends LitElement {
         if (!entityId) return undefined;
         const state = this.hass.states[entityId]?.state;
         if (state === undefined) return undefined;
-        const value = parseFloat(state);
+        const value = parseFloat(state).toFixed(1);
         return isNaN(value) ? undefined : value;
     }
 
@@ -295,7 +295,7 @@ export class AirflowCard extends LitElement {
             <g transform="translate(${x}, ${y})">
                 <!-- Speed Display above fan (Hidden if 0) -->
                 ${showSpeed ? svg`
-                    <text x="0" y="-25" font-size="10" text-anchor="middle" fill="${color}" font-weight="bold">${fanState} RPM</text>
+                    <text x="0" y="-25" font-size="10" text-anchor="middle" fill="${color}" font-weight="bold">${fanState} %</text>
                 ` : ''}
                 
                 <g>
