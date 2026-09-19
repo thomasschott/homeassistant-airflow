@@ -6,6 +6,8 @@ export const translations = {
         extract: "Extract",
         exhaust: "Exhaust",
         humidity: "Humidity",
+        target_temp: "Target",
+        co2: "CO2",
         supply: "Supply",
         calculated_efficiency: "Calculated Efficiency",
         bypass_active: "BYPASS ACTIVE"

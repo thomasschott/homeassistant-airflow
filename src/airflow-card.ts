@@ -195,12 +195,13 @@ export class AirflowCard extends LitElement {
          ${this.renderPortBox(cx - 230, cy - 160, t.outdoor, this.config.entity_temp_outdoor, colorOutdoor, cardBg, divider, primaryText)}
          ${this.renderEfficiency(cx - 45, cy - 160, t.efficiency, cardBg, divider, secondaryText, primaryText)}
          ${this.renderPortBox(cx + 140, cy - 160, t.extract, this.config.entity_temp_extract, colorStale, cardBg, divider, primaryText)}
-         ${this.renderPortBox(cx + 140, cy - 240, t.humidity, this.config.entity_humidity, colorStale, cardBg, divider, primaryText)}
+         ${this.renderPortBox(cx + 140, cy - 40, t.humidity, this.config.entity_humidity, colorStale, cardBg, divider, primaryText)}
          
          <!-- Bottom Boxes: Positioned inside the frame, below duct lines -->
          ${this.renderPortBox(cx - 230, cy + 105, t.exhaust, this.config.entity_temp_exhaust, colorExhaust, cardBg, divider, primaryText)}
          ${this.renderPortBox(cx - 45, cy + 105, t.level, this.config.entity_level, isLight ? "#444" : primaryText, cardBg, divider, primaryText)}
          ${this.renderPortBox(cx + 140, cy + 105, t.supply, this.config.entity_temp_supply, isBypassOpen ? colorOutdoor : colorFresh, cardBg, divider, primaryText)}
+         ${this.renderPortBox(cx + 47, cy + 105, t.target_temp, this.config.entity_temp_target, isBypassOpen ? colorOutdoor : colorFresh, cardBg, divider, primaryText)}
 
          <!-- Fans -->
          ${this.renderFan(cx + 150, cy + 60, this.config.entity_fan_supply, isBypassOpen ? colorOutdoor : colorFresh, fanDuration, cardBg)}
